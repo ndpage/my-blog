@@ -29,6 +29,7 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
       <header className={styles.header}>
         {home ? (
@@ -67,6 +68,17 @@ export default function Layout({ children, home }) {
           </Link>
         </div>
       )}
+      <footer className={styles.footer}>
+        <p>Copyright &copy; 2020 Nathan Page</p>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+        </a>
+      </footer>
     </div>
   )
 }
