@@ -50,3 +50,8 @@
 .lightText {
   color: #999;
 }
+
+.subtext{
+  font-size: 14px;
+  font: italic;
+}
