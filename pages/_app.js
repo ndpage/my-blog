@@ -1,6 +1,7 @@
-import '../styles.css'
+
+import '../styles/global.css' //import the stylesheet from global.css
 
 // This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
