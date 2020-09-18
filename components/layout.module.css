@@ -1,0 +1,13 @@
+
+/* 
+  CSS modules are only used for component styling. 
+  To use global CSS, change the code in global.css
+*/
+
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+  border: solid black 2px;
+  line-height: 1.3em;
+}
