@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is my personal website and blog! The project is built using NextJS and depolyed to Vercel. 
