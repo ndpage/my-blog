@@ -12,7 +12,8 @@ export default function Home() {
       <section className={utilStyles.headingMd}>
         <h2>Intro</h2>
         <p>Hello! I am a control systems and software engineer based in Greenville, South Carolina. 
-            Feel free to check out my <a href="https://www.linkedin.com/in/nathan-page-2018/">LinkedIn</a> and <a href="https://github.com/ndpage">GitHub</a> pages to see my projects and experience.
+            Feel free to check out my <a href="https://www.linkedin.com/in/nathan-page-2018/" target="_blank" rel="noopener noreferrer">LinkedIn </a> 
+              and <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> GitHub</a> pages to see my projects and experience.
           </p>
           <p> Check out my blog posts below to learn more about me and my interests and passions.</p>
       </section>
