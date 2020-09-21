@@ -32,29 +32,8 @@ export default function Home({ allPostsData }) {
           </p>
           <p> Check out my blog posts below to learn more about me and my interests and passions.</p>
       </section>
-      <section className={utilStyles.headingMd}> 
-        <h2> 
-          Blog
-        </h2>
-        <p>
-          <Link href="/posts/first-post">
-            <a>
-                <h3>Welcome!</h3>
-              <p className={utilStyles.subtext}>{postDate[0]}</p> 
-            </a>
-            </Link>
-        <p>
-          <Link href="/posts/second-post">
-            <a>
-              <h3>Second Post</h3>
-              <p className={utilStyles.subtext}>{postDate[1]}</p> 
-            </a>
-            </Link>
-        </p>
-        </p>
-      </section>
       <section> 
-      <h2 className={utilStyles.headingLg}>Blog 2</h2>
+      <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
