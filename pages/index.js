@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Layout, { siteTitle, postDate} from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsDataFS } from '../lib/posts' //This parses the posts .md files
+import Date from '../components/date'
 
 
 /*
@@ -24,7 +25,7 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className={utilStyles.headingSm}>
         <h2>Intro</h2>
         <p>Hello! I am a control systems and software engineer based in Greenville, South Carolina. 
             Feel free to check out my <a href="https://www.linkedin.com/in/nathan-page-2018/" target="_blank" rel="noopener noreferrer">LinkedIn </a> 
@@ -37,12 +38,14 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
-            </li>
+            <Link href={`/posts/${id}`}>
+              <a>{title}</a>
+            </Link>
+            <br />
+            <small className={utilStyles.lightText}>
+              <Date dateString={date} />
+            </small>
+          </li>
           ))}
         </ul>
       </section>
