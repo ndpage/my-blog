@@ -72,6 +72,14 @@ export default function Layout({ children, home }) {
       )}
       <footer className={styles.footer}>
         <p>Copyright &copy; 2020 Nathan Page</p>
+        <div>
+          <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> 
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/nathan-page-2018/" target="_blank" rel="noopener noreferrer"> 
+            LinkedIn
+          </a>
+        </div>
       </footer>
     </div>
   )
