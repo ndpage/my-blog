@@ -1,9 +1,24 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout, { siteTitle} from '../components/layout'
+import Layout, { siteTitle, postDate} from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
+import { getSortedPostsDataFS } from '../lib/posts' //This parses the posts .md files
 
-export default function Home() {
+
+/*
+  getStaticProps function is used to render a page with data.
+  This indes.js page uses static side generation and
+*/
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsDataFS()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+}
+
+export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -23,11 +38,34 @@ export default function Home() {
         </h2>
         <p>
           <Link href="/posts/first-post">
-            <a>Welcome!
-              <p className={utilStyles.subtext}>Semptember 18, 2020</p> 
+            <a>
+                <h3>Welcome!</h3>
+              <p className={utilStyles.subtext}>{postDate[0]}</p> 
+            </a>
+            </Link>
+        <p>
+          <Link href="/posts/second-post">
+            <a>
+              <h3>Second Post</h3>
+              <p className={utilStyles.subtext}>{postDate[1]}</p> 
             </a>
             </Link>
         </p>
+        </p>
+      </section>
+      <section> 
+      <h2 className={utilStyles.headingLg}>Blog 2</h2>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   )
