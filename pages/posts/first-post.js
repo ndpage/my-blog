@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Layout from '../../components/layout'
 import Post from '../../components/post'
 import UtilsStyle from '../../styles/utils.module.css'
+import {postDate} from '../../components/layout'
 
 // Global variables 
 const pageName = 'Welcome!'
@@ -25,7 +26,7 @@ export default function FirstPost() {
           <p>I am an engineer at <a href="https://www.boschrexroth.com/en/xc/" target="_blank">Bosch Rexroth</a> in the Greeenville, South Carolina area.I am part of the Mobile Hydraulics Research and Devleopment group, with a focus on mechatronics systems.</p>
           <p> I graduated May 2018 from <a href="https://www.ncsu.edu/" target="_blank"> North Carolina State University</a> with a Bachelor of Science in Engineering with a concentration in Mechatronics (electro-mechanical systems).</p>
           <p>Thanks for reading!</p>
-          <p className={UtilsStyle.subtext}>Written Semptember 18, 2020</p> 
+          <p className={UtilsStyle.subtext}>Written {postDate[0]}</p> 
         </Post>
       </Layout>
     </>
