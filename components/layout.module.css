@@ -59,4 +59,9 @@
 .footer div a{
   margin: auto;
   padding: 0 20px;
+  text-decoration: none;
+  color: #15c;
+}
+.footer div a:hover{
+  color: #8BF;
 }
