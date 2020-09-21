@@ -32,22 +32,17 @@
 
 .post{
   padding: 1.1em 2em;
-  border: solid black 2px;
+  border: solid #cfcfcf 2px;
   background-color: none;
 }
 
 .footer {
-  max-width: 100%;
-  height: 100px;
   border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  margin: 1.7em auto;
 }
 
 .footer img {
@@ -55,8 +50,13 @@
   max-width: 20%;
 }
 
-.footer a {
+.footer div {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  margin: 1.1em auto;
+}
+
+.footer div a{
+  margin: auto;
+  padding: 0 20px;
 }
