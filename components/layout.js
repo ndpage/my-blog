@@ -11,8 +11,7 @@ import Link from 'next/link'
 
 const name = 'Nathan Page'
 export const siteTitle = 'Nathan Page'
-export const siteTitle2 = 'Nathan Page: Dad, Engineer, Genius'
-export var postDate = []
+
 
 export default function Layout({ children, home }) {
   return (
