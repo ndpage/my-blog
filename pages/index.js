@@ -18,6 +18,11 @@ export async function getStaticProps() {
     }
   }
 }
+/**
+ * Function: Home({allPostsData}) 
+ * Description: The Home function houses the short bio and the links to the blog posts
+ *               Blog posts are parsed by getSortedPostsDataFS() and displayed with getStaticProps() 
+ */
 
 export default function Home({ allPostsData }) {
   return (
@@ -33,7 +38,7 @@ export default function Home({ allPostsData }) {
             and <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> GitHub</a> pages to see my projects and experience.
         </p>
       </article>
-      <section> 
+      <section>
       <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
@@ -41,7 +46,7 @@ export default function Home({ allPostsData }) {
             <Link href={`/posts/${id}`}>
               <a>{title}</a>
             </Link>
-            <br />
+            <br /> 
             <small className={utilStyles.lightText}>
               <Date dateString={date} />
             </small>
