@@ -8,7 +8,7 @@ import Date from '../components/date'
 
 /*
   getStaticProps function is used to render a page with data.
-  This indes.js page uses static side generation and
+  This index.js page uses static side generation
 */
 export async function getStaticProps() {
   const allPostsData = getSortedPostsDataFS()
