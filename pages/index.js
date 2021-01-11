@@ -25,7 +25,7 @@ const query = groq`
   }
   */
   
-export async function getStaticProps() {
+export async function getServerSideProps(context){
   const allPostsData = await client.fetch(query)
   return {
     props: {
@@ -57,14 +57,12 @@ export default function Home({allPostsData}) {
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ul className={utilStyles.list}>
         {allPostsData.map(
-              ({ _id, title = '', slug = '', _updatedAt = '' }) =>
+              ({ _id, title = '', slug = '', publishedAt = '' }) =>
                 slug && (
                   <Link href="/post/[slug]" as={`/post/${slug.current}`}>
                     <a> 
                       <li key={_id} className={utilStyles.listItem}>
-                        {title}
-                        {' '}
-                        ({new Date(_updatedAt).toDateString()})
+                        {title}{'  '}({new Date(publishedAt).toDateString()})
                      </li>
                    </a>
                 </Link>

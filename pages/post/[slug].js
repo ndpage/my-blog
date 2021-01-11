@@ -14,7 +14,6 @@ import BlockContent from '@sanity/block-content-to-react'
 
 /* 
 Function: urlFor 
-Description: Configures the URL of the post
 */
 function urlFor (source) {
   return imageUrlBuilder(client).image(source)
@@ -28,6 +27,7 @@ export const query = groq`*[_type == "post" && slug.current == $slug][0]{
   body
 }`
 
+/*
 export async function getStaticPaths() {
   const data = await client.fetch(`*[_type == "post"]{'slug':slug.current}`)
   const paths = []
@@ -52,18 +52,30 @@ export async function getStaticProps({params}) {
     props: {postData}
   }
 }
+*/
+
+export async function getServerSideProps(context) {
+
+  const { slug = "" } = context.query
+  const post = await client.fetch(query, {slug})
+
+  return {
+    props: {post}, // will be passed to the page component as props
+  }
+}
+
 
 /*  Funtion: Post
 Description: Post function is used to display the fetched data from the Sanity API and GROQ query on the page
 */
-export default function Post({postData}){
+export default function Post({post}){
   const {
     title = ' Missing Title',
     name = ' Missing Name',
     categories,
     authorImage,
     body = []
-  } = postData
+  } = post
   return (
     <Layout post> 
      <Head>
