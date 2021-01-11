@@ -59,15 +59,15 @@ export default function Home({allPostsData}) {
         {allPostsData.map(
               ({ _id, title = '', slug = '', _updatedAt = '' }) =>
                 slug && (
-                  <a> 
-                      <Link href="/post/[slug]" as={`/post/${slug.current}`}>
+                  <Link href="/post/[slug]" as={`/post/${slug.current}`}>
+                    <a> 
                       <li key={_id} className={utilStyles.listItem}>
                         {title}
                         {' '}
                         ({new Date(_updatedAt).toDateString()})
-                      </li>
-                    </Link>
-                  </a>
+                     </li>
+                   </a>
+                </Link>
                 )
               )}
         </ul>
