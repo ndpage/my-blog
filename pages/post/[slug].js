@@ -1,10 +1,11 @@
 
+// NextJS components
 import Head from 'next/head'
 import Layout from '../../components/layout'
 
 //import { getAllPostIds, getPostData, getSortedPostsDataAPI } from '../../lib/posts'
 //import Date from '../../components/date'
-import utilStyles from '../../styles/utils.module.css'
+//import utilStyles from '../../styles/utils.module.css'
 
 import groq from 'groq' //groq is used to query the data 
 import client from '../../client'  // client is a component that connects to the Sanity API with the dataset and ProjectID
@@ -52,14 +53,13 @@ export async function getStaticProps({params}) {
   }
 }
 
-
 /*  Funtion: Post
 Description: Post function is used to display the fetched data from the Sanity API and GROQ query on the page
 */
 export default function Post({postData}){
   const {
-    title = ' Missing title',
-    name = ' Missing name',
+    title = ' Missing Title',
+    name = ' Missing Name',
     categories,
     authorImage,
     body = []
