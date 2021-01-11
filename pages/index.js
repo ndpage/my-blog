@@ -2,29 +2,44 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsDataFS } from '../lib/posts' //This parses the posts .md files
-import Date from '../components/date'
+//import { getSortedPostsDataFS } from '../lib/posts' //This parses the posts .md files
+//import Date from '../components/date'
 
+import groq from 'groq'
+import client from '../client'
 
+const query = groq`
+*[_type == "post" && publishedAt < now()]|order(publishedAt desc)
+`
 /*
   getStaticProps function is used to render a page with data.
   This index.js page uses static side generation
-*/
+  export async function getStaticProps() {
+    const allPostsData = getSortedPostsDataFS()
+    
+    return {
+      props: {
+        allPostsData
+      }
+    }
+  }
+  */
+  
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsDataFS()
+  const allPostsData = await client.fetch(query)
   return {
     props: {
       allPostsData
     }
-  }
+  } 
 }
+
 /**
  * Function: Home({allPostsData}) 
  * Description: The Home function houses the short bio and the links to the blog posts
  *               Blog posts are parsed by getSortedPostsDataFS() and displayed with getStaticProps() 
  */
-
-export default function Home({ allPostsData }) {
+export default function Home({allPostsData}) {
   return (
     <Layout home>
       <Head>
@@ -40,18 +55,21 @@ export default function Home({ allPostsData }) {
       </article>
       <section>
       <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-            <Link href={`/posts/${id}`}>
-              <a>{title}</a>
-            </Link>
-            <br /> 
-            <small className={utilStyles.lightText}>
-              <Date dateString={date} />
-            </small>
-          </li>
-          ))}
+      <ul className={utilStyles.list}>
+        {allPostsData.map(
+              ({ _id, title = '', slug = '', _updatedAt = '' }) =>
+                slug && (
+                  <a> 
+                      <Link href="/post/[slug]" as={`/post/${slug.current}`}>
+                      <li key={_id} className={utilStyles.listItem}>
+                        {title}
+                        {' '}
+                        ({new Date(_updatedAt).toDateString()})
+                      </li>
+                    </Link>
+                  </a>
+                )
+              )}
         </ul>
       </section>
     </Layout>
