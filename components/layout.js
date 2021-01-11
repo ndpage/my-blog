@@ -1,8 +1,8 @@
 
 
 /* 
-  CSS modules are only used for component styling. 
-  To use global CSS, change the code in global.css
+Layout.js
+Provides site wide layout for 
 */
 import Head from 'next/head'
 import styles from './layout.module.css'
@@ -70,7 +70,7 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <footer className={styles.footer}>
-        <p>Copyright &copy; 2020 Nathan Page</p>
+        <p>Copyright &copy; 2021 Nathan Page</p>
         <div>
           <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> 
             GitHub
