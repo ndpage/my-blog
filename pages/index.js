@@ -47,7 +47,7 @@ export default function Home({allPostsData}) {
       </Head>
       <article>
         <p>
-          Hello! I am a control systems and software engineer based in Greenville, South Carolina. 
+          Control systems and software engineer based in Greenville, South Carolina. I love to learn new technologies and help others learn too. 
         </p>
         <p> Check out my blog posts below to learn more about me and my interests, and check out my <a href="https://www.linkedin.com/in/nathan-page-2018/" target="_blank" rel="noopener noreferrer">LinkedIn </a> 
             and <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> GitHub</a> pages to see my projects and experience.
