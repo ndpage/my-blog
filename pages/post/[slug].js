@@ -12,6 +12,14 @@ import client from '../../client'  // client is a component that connects to the
 import imageUrlBuilder from '@sanity/image-url'
 import BlockContent from '@sanity/block-content-to-react'
 
+export const query = groq`*[_type == "post" && slug.current == $slug][0]{
+  title,
+  "name": author->name,
+  "categories": categories[]->title,
+  "authorImage": author->image,
+  body, 
+}`
+
 /* 
 Function: urlFor 
 */
@@ -19,56 +27,62 @@ function urlFor (source) {
   return imageUrlBuilder(client).image(source)
 }
 
-export const query = groq`*[_type == "post" && slug.current == $slug][0]{
-  title,
-  "name": author->name,
-  "categories": categories[]->title,
-  "authorImage": author->image,
-  body
-}`
-
-/*
 export async function getStaticPaths() {
-  const data = await client.fetch(`*[_type == "post"]{'slug':slug.current}`)
-  const paths = []
+  const query = `*[_type == "post"]`;  // {'slug':slug.current} was included when using the for loop
+  const posts = await client.fetch(query)
   
+  /*
+  const paths = [{}]
   var i=0
-  for(i=0;i<data.length;i++){
-    paths[i] = "/post/"+data[i].slug
+  for(i=0;i<posts.length;i++){
+    paths[i] = `/post/${posts[i].slug}`
   }
+*/
 
-  return {
-    paths,
-    fallback: false
-  }
+ // Get the paths we want to pre-render based on posts
+ const paths = posts.map((post) => ({
+  params: { slug: post.slug.current },
+}))
+
+return { paths, fallback: false }
 }
 
 // Gets the data from Sanity studio using a GROQ query
-export async function getStaticProps({params}) {
-  const {slug=""} = params
-  const postData = await client.fetch(query, {slug})
-  console.log(postData.title)
+export async function getStaticProps(context) {
+  const slug = context.params.slug
+  const post = await client.fetch(query, {slug})
   return {
-    props: {postData}
+    props: {
+        post
+      },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every second
+    revalidate: 5, // In seconds
   }
 }
-*/
 
+/*
 export async function getServerSideProps(context) {
 
-  const { slug = "" } = context.query
+  const { slug = " " } = context.query
   const post = await client.fetch(query, {slug})
 
   return {
-    props: {post}, // will be passed to the page component as props
+    props: {  // will be passed to the page component as props
+        post
+      }
   }
 }
+*/
 
 
-/*  Funtion: Post
-Description: Post function is used to display the fetched data from the Sanity API and GROQ query on the page
+/*  --------------------------------------------------------------
+  Funtion: Post()
+  Description: Post function is used to display the fetched data from the Sanity API and GROQ query on the page
 */
 export default function Post({post}){
+  console.log(post)
   const {
     title = ' Missing Title',
     name = ' Missing Name',
@@ -84,23 +98,25 @@ export default function Post({post}){
     <article>
       <h1>{title}</h1>
       <span>By {name}</span>
+      {/*authorImage && (
+        <div>
+          <img
+            src={urlFor(authorImage)
+              .width(100)
+              .url()}
+              />
+        </div>
+        )*/}
+      <div>
       {categories && (
         <ul>
           {categories.map(category => <li key={category}>{category}</li>)}
         </ul>
       )}
-      {authorImage && (
-        <div>
-          <img
-            src={urlFor(authorImage)
-              .width(50)
-              .url()}
-              />
-        </div>
-      )}
+      </div>
       <BlockContent
         blocks={body}
-        imageOptions={{ w: 320, h: 240, fit: 'max' }}
+        imageOptions={{ w: 540, h: 460, fit: 'max' }}
         {...client.config()}
         />
     </article>
@@ -108,44 +124,4 @@ export default function Post({post}){
   )
 }
 
-// ======================= OLD POST FUNCTION =====================
-/*
-// Gets the data from function getPostData() defined in posts.js
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
-  return {
-    props: {
-      postData
-    }
-  }
-}
-*/
- 
-/*
-export async function getStaticPaths() {
-  const paths = getAllPostIds()
-  return {
-    paths,
-    fallback: false
-  }
-}
-
-// Main Post function for returning the data of a blog post
-export default function Post({ postData }) {
-  return (
-    <Layout>
-    <Head>
-      <title>{postData.title}</title>
-    </Head>
-    <article>
-    <h1 className={utilStyles.headingLg}>{postData.title}</h1>
-    <div className={utilStyles.lightText}>
-    <Date dateString={postData.date} />
-    </div>
-    <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-    </article>
-    </Layout>
-    )
-  }
-  */
 
