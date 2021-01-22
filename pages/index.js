@@ -25,14 +25,19 @@ const query = groq`
   }
   */
   
-export async function getServerSideProps(context){
+export async function getStaticProps(){
   const allPostsData = await client.fetch(query)
   return {
     props: {
-      allPostsData
-    }
-  } 
+      allPostsData,
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every second
+    revalidate: 5, // In seconds
+  }
 }
+
 
 /**
  * Function: Home({allPostsData}) 
@@ -41,6 +46,7 @@ export async function getServerSideProps(context){
  */
 export default function Home({allPostsData}) {
   return (
+    <>
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
@@ -71,5 +77,6 @@ export default function Home({allPostsData}) {
         </ul>
       </section>
     </Layout>
+    </>
   )
 }
