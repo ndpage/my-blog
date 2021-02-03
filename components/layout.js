@@ -1,19 +1,30 @@
-
-
 /* 
-Layout.js
-Provides site wide layout for 
+  Layout.js
+  Provides site wide layout
 */
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from "next/head";
+import styles from "./layout.module.css";
+import utilStyles from "../styles/utils.module.css";
+import Link from "next/link";
 
-const name = 'Nathan Page'
-export const siteTitle = 'Nathan Page'
+const name = "Nathan Page";
+export const siteTitle = "Nathan Page";
 
-
-export default function Layout({ children, home }) {
+export default function Layout({ home, post, children }) {
+  const navItems = [
+    {
+      itemName: "About Me",
+      url: "author/nathan-page",
+    },
+    {
+      itemName: "Blog",
+      url: "/posts",
+    },
+    {
+      itemName: "Contact",
+      url: "/contact",
+    },
+  ];
   return (
     <div className={styles.container}>
       <Head>
@@ -30,9 +41,21 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
       </Head>
       <header className={styles.header}>
+        {/*
+        <navbar className={styles.navBar}>
+          {navItems.map((item) => (
+            <Link href="/" as={`${item.url}`}>
+              <a className={styles.navItem}>{item.itemName}</a>
+            </Link>
+          ))}
+        </navbar>
+        */}
         {home ? (
           <>
             <img
@@ -70,16 +93,24 @@ export default function Layout({ children, home }) {
         </div>
       )}
       <footer className={styles.footer}>
-        <p>Copyright &copy; 2021 Nathan Page</p>
+        <p>&copy; 2021 Nathan Page</p>
         <div>
-          <a href="https://github.com/ndpage" target="_blank" rel="noopener noreferrer"> 
+          <a
+            href="https://github.com/ndpage"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             GitHub
           </a>
-          <a href="https://www.linkedin.com/in/nathan-page-2018/" target="_blank" rel="noopener noreferrer"> 
+          <a
+            href="https://www.linkedin.com/in/nathan-page-2018/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn
           </a>
         </div>
       </footer>
     </div>
-  )
+  );
 }
