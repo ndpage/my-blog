@@ -62,18 +62,9 @@ export default function Home({ allPostsData, bioData }) {
           <p>
             <BlockContent blocks={bioData.bio} {...client.config()} />
           </p>
-          <Link href="/author/nathan-page">
-            <a>
-              <h3>About Me</h3>
-            </a>
-          </Link>
         </section>
         <section>
-          <Link href="">
-            <a>
-              <h3>Blog</h3>
-            </a>
-          </Link>
+          <h3>Blog</h3>
           <ul className={utilStyles.list}>
             {allPostsData.map(
               ({ _id, title = "", slug = "", publishedAt = "" }) =>
