@@ -1,4 +1,3 @@
-
 /* 
   CSS modules are only used for component styling. 
   To use global CSS, change the code in global.css
@@ -22,15 +21,28 @@
 }
 
 .headerHomeImage {
-  width: 12rem;
-  height: 12rem;
+  width: 14rem;
+  height: 14rem;
+}
+
+.navBar {
+  display: flex;
+  flex: 1;
+  flex-flow: wrap row;
+  justify-content: space-between;
+  margin: 1.5rem auto;
+}
+.navItem {
+  margin: 2px 25px;
+  padding: 5px;
+  border-bottom: solid #8bf 1px;
 }
 
 .backToHome {
   margin: 3rem 0 0;
 }
 
-.post{
+.post {
   padding: 1.1em 2em;
   border: solid #cfcfcf 2px;
   background-color: none;
@@ -56,12 +68,12 @@
   margin: 1.1em auto;
 }
 
-.footer div a{
+.footer div a {
   margin: auto;
   padding: 0 20px;
   text-decoration: none;
   color: #15c;
 }
-.footer div a:hover{
-  color: #8BF;
+.footer div a:hover {
+  color: #8bf;
 }
