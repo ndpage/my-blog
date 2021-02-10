@@ -58,7 +58,6 @@ export async function getStaticProps(context) {
   Description: Post function is used to display the fetched data from the Sanity API and GROQ query on the page
 */
 export default function Post({ post }) {
-  console.log(post);
   const {
     title = " Missing Title",
     name = " Missing Name",
