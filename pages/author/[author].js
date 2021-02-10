@@ -38,8 +38,6 @@ export async function getStaticPaths() {
 
 // Gets the data from Sanity studio using a GROQ query
 export async function getStaticProps({ params }) {
-  console.log("------ getStaticProps function start ----------");
-  console.log(params);
   const slug = params.author;
   const author = await client.fetch(query, { slug });
   return {
@@ -65,12 +63,10 @@ export default function Author({ author }) {
         <title>{name}</title>
       </Head>
       <article>
-        <h1>{name}</h1>
-        {image && (
-          <div>
-            <img src={urlFor(image).width(300).url()} />
-          </div>
-        )}
+        <h1>About Me</h1>
+        <div>
+          <img src={urlFor(image).width(300).url()} />
+        </div>
         <BlockContent
           blocks={bio}
           imageOptions={{ w: 540, h: 460, fit: "max" }}
