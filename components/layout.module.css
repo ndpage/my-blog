@@ -49,31 +49,20 @@
 }
 
 .footer {
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
+  font-size: medium;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1.7em auto;
+}
+
+.footer section {
+  max-width: 75%;
+  display: flex;
+  flex-direction: row;
 }
 
 .footer img {
-  margin-left: 0.5rem;
+  margin: 5px auto;
   max-width: 20%;
-}
-
-.footer div {
-  display: flex;
-  flex-direction: row;
-  margin: 1.1em auto;
-}
-
-.footer div a {
-  margin: auto;
-  padding: 0 20px;
-  text-decoration: none;
-  color: #15c;
-}
-.footer div a:hover {
-  color: #8bf;
+  min-width: 15%;
 }
