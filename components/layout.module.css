@@ -49,6 +49,7 @@
 }
 
 .footer {
+  border-top: solid #a5a5a5 2px;
   font-size: medium;
   display: flex;
   flex-direction: column;
