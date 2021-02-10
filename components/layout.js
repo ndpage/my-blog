@@ -94,20 +94,33 @@ export default function Layout({ home, post, children }) {
       )}
       <footer className={styles.footer}>
         <p>&copy; 2021 Nathan Page</p>
-        <div>
+        <section>
           <a
             href="https://github.com/ndpage"
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            <img src="/github.svg" alt="Github Logo" />
           </a>
           <a
             href="https://www.linkedin.com/in/nathan-page-2018/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            <img src="/linkedin.svg" alt="Linkedin Logo" />
+          </a>
+        </section>
+        <div>
+          Icons made by{"   "}
+          <a
+            href="https://www.flaticon.com/authors/pixel-perfect"
+            title="Pixel perfect"
+          >
+            Pixel perfect
+          </a>{" "}
+          from{" "}
+          <a href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
           </a>
         </div>
       </footer>
