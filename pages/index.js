@@ -59,9 +59,7 @@ export default function Home({ allPostsData, bioData }) {
           <title>{siteTitle}</title>
         </Head>
         <section>
-          <p>
-            <BlockContent blocks={bioData.bio} {...client.config()} />
-          </p>
+          <BlockContent blocks={bioData.bio} {...client.config()} />
         </section>
         <section>
           <h3>Blog</h3>
@@ -69,7 +67,11 @@ export default function Home({ allPostsData, bioData }) {
             {allPostsData.map(
               ({ _id, title = "", slug = "", publishedAt = "" }) =>
                 slug && (
-                  <Link href="/post/[slug]" as={`/post/${slug.current}`}>
+                  <Link
+                    key={_id}
+                    href="/post/[slug]"
+                    as={`/post/${slug.current}`}
+                  >
                     <a>
                       <li key={_id} className={utilStyles.listItem}>
                         {title}
