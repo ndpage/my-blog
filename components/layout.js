@@ -76,11 +76,11 @@ export default function Layout({ home, post, children }) {
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
+            {/*<h2 className={utilStyles.headingLg}>
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
-            </h2>
+        </h2>*/}
           </>
         )}
       </header>
@@ -110,7 +110,7 @@ export default function Layout({ home, post, children }) {
             <img src="/linkedin.svg" alt="Linkedin Logo" />
           </a>
         </section>
-        <div>
+        <div className={utilStyles.smallText}>
           Icons made by{"   "}
           <a
             href="https://www.flaticon.com/authors/pixel-perfect"
